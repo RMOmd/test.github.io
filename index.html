@@ -20,6 +20,7 @@
         <p>Here are a lot of goods in the shop</p>
         <p>Here are a lot of goods in the shop</p>
         <p>Here are a lot of goods in the shop</p>
+        <button id="back_button">Back</button>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
@@ -31,7 +32,12 @@
         catalogButton.addEventListener("click", () => {
             main.style.display = "none";
             catalog.style.display = "block";
-        });
+        }
+            {
+            catalog.style.display = "none";
+            main.style.display = "block";
+        }                          
+                                      );
     </script>
 </body>
 </html>
