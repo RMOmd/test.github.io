@@ -2,39 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="vlewport"
-          content="width=device-width, user-scalable=no, initlal-scale=1.0, naximum-scole=1.0, ninimum-scole=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
 </head>
 <body>
     <div id="main">
         <h1>OnlineShop</h1>
-        <img src="shop.png">
-        <p> Description of the shop</p>
+        <img src="shop.png" alt="Shop Image">
+        <p>Description of the shop</p>
         <button id="catalog_button">Catalog</button>
     </div>
-    <div id="catalog">
+    <div id="catalog" style="display: none;">
         <h1>Online catalog</h1>
         <p>This is the shop</p>
-
-        <p>Here a lot of goods in the shop</p>
-        <p>Here a lot of goods in the shop</p>
-        <p>Here a lot of goods in the shop</p>
-        <p>Here a lot of goods in the shop</p>
-        
+        <p>Here are a lot of goods in the shop</p>
+        <p>Here are a lot of goods in the shop</p>
+        <p>Here are a lot of goods in the shop</p>
+        <p>Here are a lot of goods in the shop</p>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
+        let catalogButton = document.getElementById("catalog_button");
+        let main = document.getElementById("main");
         let catalog = document.getElementById("catalog");
 
-
-        catalog.addEventListener("click", () => {
-            document.getElementById("main").style.display = "none";
-            document.getElementById("catalog").style.display = "block";
+        catalogButton.addEventListener("click", () => {
+            main.style.display = "none";
+            catalog.style.display = "block";
         });
     </script>
-    
 </body>
 </html>
