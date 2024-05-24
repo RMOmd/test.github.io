@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
-    <style>
+       <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -38,6 +38,8 @@
             border-radius: 8px;
             margin: 10px;
             overflow: hidden; /* Ensure content doesn't overflow */
+            display: flex;
+            flex-direction: column;
         }
         .product img, .product-detail img {
             max-width: 100%;
@@ -55,13 +57,14 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 10px;
+            margin-top: auto;
             width: 100px; /* Fixed width for consistency */
             transition: all 0.3s ease;
         }
         .more_button {
             background-color: #d3d3d3;
             color: #000;
+            margin-bottom: 10px;
         }
         .more_button:hover {
             background-color: #000;
