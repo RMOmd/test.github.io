@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
         }
-        #main, #catalog {
+        #main, #catalog, .product-detail {
             padding: 20px;
             text-align: center; /* Center content horizontally */
         }
@@ -24,6 +24,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            justify-content: center;
         }
         .product {
             width: calc(50% - 20px);
@@ -44,6 +45,9 @@
             color: #666;
             margin: 5px 0;
         }
+        .product button {
+            margin-top: 10px;
+        }
         button {
             background-color: #007bff;
             color: #fff;
@@ -61,6 +65,10 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .shop-description {
+            text-align: left;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +76,9 @@
         <h1>OnlineShop</h1>
         <img src="shop.png" alt="Shop Image" class="centered-image">
         <p>Description of the shop</p>
+        <div class="shop-description">
+            <p>There are over 20 million Poles living abroad, which means that as many as 36% of Poles do not live in their homeland. Poles have been leaving and are still leaving for various reasons, such as the political, financial, family and professional situation, and for many other reasons. Each Emigrant has his own personal history. Citizens of Poland are spread all over the world, many of whom live in the United States, Canada, Great Britain and Germany. Polonia is also numerous in many European countries and practically in every other corner of the world. However, all Poles are bound together in one country, it is a longing for their homeland.</p>
+        </div>
         <button id="catalog_button">Catalog</button>
     </div>
     <div id="catalog" style="display: none;">
@@ -78,6 +89,7 @@
                 <p>- More than 50 Polish channels;</p>
                 <p>- Video library;</p>
                 <p>- Archive.</p>
+                <button class="more_button" data-product="product1_detail">Подробнее</button>
             </div>
             <div class="product">
                 <img src="fam.png" alt="Product 2">
@@ -87,6 +99,7 @@
                 <p>- Archive;</p>
                 <p>- Adult Channel – 1;</p>
                 <p>- VoD – 1.</p>
+                <button class="more_button" data-product="product2_detail">Подробнее</button>
             </div>
             <div class="product">
                 <img src="prem.png" alt="Product 3">
@@ -97,14 +110,50 @@
                 <p>- Archive;</p>
                 <p>- Adult Channels – 5;</p>
                 <p>- VoD – 5.</p>
+                <button class="more_button" data-product="product3_detail">Подробнее</button>
             </div>
             <div class="product">
                 <img src="box.png" alt="Product 4">
                 <p>The stylish and functional TVBox Smart media player with ergonomic design offers convenience and ease of use.</p>
                 <p>*The maximum distance for the decoder to work of Wi-Fi is 3 meters from the router, and devices should be on the same level. In other conditions, please connect the cable.</p>
+                <button class="more_button" data-product="product4_detail">Подробнее</button>
             </div>
         </div>
         <button id="back_button">Back</button>
+    </div>
+    <div id="product1_detail" class="product-detail" style="display: none;">
+        <h1>Package „Basic" Full Description</h1>
+        <p>The package „Basic' gives you the ability to watch a package of PolBox.TV channels on a TV, computer, smartphone or tablet.</p>
+        <p>The package „Basic' allows you to watch:</p>
+        <p>-More than 50 Polish channels</p>
+        <p>-Video library</p>
+        <p>-Archives</p>
+        <p>One month is 30 days in all packages and with different durations.</p>
+        <p>The subscription period begins when you first log in (on a receiver or online), not from the time you make a payment.</p>
+        <button class="back_to_catalog">Back to Catalog</button>
+    </div>
+    <div id="product2_detail" class="product-detail" style="display: none;">
+        <h1>Package „Family" Full Description</h1>
+        <p>The package „Family' gives you the ability to watch a package of PolBox.TV channels on a TV, computer, smartphone or tablet.</p>
+        <p>The package „Family' allows you to watch:</p>
+        <p>- More than 80 Polish channels</p>
+        <p>- Video library</p>
+        <p>- Multiroom</p>
+        <p>- Archive</p>
+        <p>- Adult Channel – 1</p>
+        <p>- VoD – 1</p>
+        <p>One month is 30 days in all packages and with different durations.</p>
+        <button class="back_to_catalog">Back to Catalog</button>
+    </div>
+    <div id="product3_detail" class="product-detail" style="display: none;">
+        <h1>Product 3 Full Description</h1>
+        <p>Full details about Product 3.</p>
+        <button class="back_to_catalog">Back to Catalog</button>
+    </div>
+    <div id="product4_detail" class="product-detail" style="display: none;">
+        <h1>Product 4 Full Description</h1>
+        <p>Full details about Product 4.</p>
+        <button class="back_to_catalog">Back to Catalog</button>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
@@ -113,6 +162,8 @@
         let backButton = document.getElementById("back_button");
         let main = document.getElementById("main");
         let catalog = document.getElementById("catalog");
+        let moreButtons = document.querySelectorAll(".more_button");
+        let backToCatalogButtons = document.querySelectorAll(".back_to_catalog");
 
         catalogButton.addEventListener("click", () => {
             main.style.display = "none";
@@ -122,6 +173,22 @@
         backButton.addEventListener("click", () => {
             catalog.style.display = "none";
             main.style.display = "block";
+        });
+
+        moreButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                catalog.style.display = "none";
+                document.getElementById(button.dataset.product).style.display = "block";
+            });
+        });
+
+        backToCatalogButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".product-detail").forEach(detail => {
+                    detail.style.display = "none";
+                });
+                catalog.style.display = "block";
+            });
         });
     </script>
 </body>
