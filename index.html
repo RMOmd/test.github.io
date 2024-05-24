@@ -26,14 +26,16 @@
     <script>
         let tg = window.Telegram.WebApp;
         let catalogButton = document.getElementById("catalog_button");
+        let backButton = document.getElementById("back_button");
         let main = document.getElementById("main");
         let catalog = document.getElementById("catalog");
 
         catalogButton.addEventListener("click", () => {
             main.style.display = "none";
             catalog.style.display = "block";
-        };
-            {
+        });
+
+        backButton.addEventListener("click", () => {
             catalog.style.display = "none";
             main.style.display = "block";
         });
