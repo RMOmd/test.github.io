@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
         }
-        #main, #catalog, .product-detail {
+        #main, #catalog, .product-detail, #cart {
             padding: 20px;
             text-align: center;
         }
@@ -67,11 +67,11 @@
             background-color: #000;
             color: #d3d3d3;
         }
-        .buy_button {
+        .cart_button {
             background-color: #ff0000;
             color: #fff;
         }
-        .buy_button:hover {
+        .cart_button:hover {
             background-color: #fff;
             color: #ff0000;
         }
@@ -84,15 +84,51 @@
             text-align: left;
             margin-top: 20px;
         }
-        @media (min-width: 600px) {
-            .product, .product-detail {
-                width: calc(50% - 20px); /* Adjust width for medium screens */
-            }
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
         }
-        @media (min-width: 900px) {
-            .product, .product-detail {
-                width: calc(33.33% - 20px); /* Adjust width for large screens */
-            }
+        .cart-button-global {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff0000;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .cart-button-global:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+        #cart_items {
+            list-style-type: none;
+            padding: 0;
+        }
+        #cart_items li {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #cart_items li button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #cart_items li button:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+        #cart {
+            display: none;
         }
     </style>
 </head>
@@ -115,7 +151,7 @@
                 <p>- Video library;</p>
                 <p>- Archive.</p>
                 <button class="more_button" data-product="product1_detail">More</button>
-                <button class="buy_button">Buy</button>
+                <button class="cart_button">Cart</button>
             </div>
             <div class="product">
                 <img src="fam.png" alt="Product 2">
@@ -126,7 +162,7 @@
                 <p>- Adult Channel – 1;</p>
                 <p>- VoD – 1.</p>
                 <button class="more_button" data-product="product2_detail">More</button>
-                <button class="buy_button">Buy</button>
+                <button class="cart_button">Cart</button>
             </div>
             <div class="product">
                 <img src="prem.png" alt="Product 3">
@@ -138,14 +174,14 @@
                 <p>- Adult Channels – 5;</p>
                 <p>- VoD – 5.</p>
                 <button class="more_button" data-product="product3_detail">More</button>
-                <button class="buy_button">Buy</button>
+                <button class="cart_button">Cart</button>
             </div>
             <div class="product">
                 <img src="box.png" alt="Product 4">
                 <p>The stylish and functional TVBox Smart media player with ergonomic design offers convenience and ease of use.</p>
                 <p>*The maximum distance for the decoder to work of Wi-Fi is 3 meters from the router, and devices should be on the same level. In other conditions, please connect the cable.</p>
                 <button class="more_button" data-product="product4_detail">More</button>
-                <button class="buy_button">Buy</button>
+                <button class="cart_button">Cart</button>
             </div>
         </div>
         <button id="back_button">Back</button>
@@ -159,8 +195,14 @@
         <p>-Video library</p>
         <p>-Archives</p>
         <p>One month is 30 days in all packages and with different durations.</p>
-        <button class="back_to_catalog">Back to Catalog</button>
-        <button class="buy_button">Buy</button>
+        <div class="radio-group">
+            <label><input type="radio" name="subscription1" value="1 month"> 1 month</label>
+            <label><input type="radio" name="subscription1" value="3 months"> 3 months</label>
+            <label><input type="radio" name="subscription1" value="6 months"> 6 months</label>
+            <label><input type="radio" name="subscription1" value="12 months"> 12 months</label>
+        </div>
+        <button class="more_button back_to_catalog">Back</button>
+        <button class="cart_button add_to_cart" data-product="Product 1" data-period="subscription1" disabled>Cart</button>
     </div>
     <div id="product2_detail" class="product-detail" style="display: none;">
         <h1>Package „Family" Full Description</h1>
@@ -174,8 +216,14 @@
         <p>- Adult Channel – 1</p>
         <p>- VoD – 1</p>
         <p>One month is 30 days in all packages and with different durations.</p>
-        <button class="back_to_catalog">Back to Catalog</button>
-        <button class="buy_button">Buy</button>
+        <div class="radio-group">
+            <label><input type="radio" name="subscription2" value="1 month"> 1 month</label>
+            <label><input type="radio" name="subscription2" value="3 months"> 3 months</label>
+            <label><input type="radio" name="subscription2" value="6 months"> 6 months</label>
+            <label><input type="radio" name="subscription2" value="12 months"> 12 months</label>
+        </div>
+        <button class="more_button back_to_catalog">Back</button>
+        <button class="cart_button add_to_cart" data-product="Product 2" data-period="subscription2" disabled>Cart</button>
     </div>
     <div id="product3_detail" class="product-detail" style="display: none;">
         <h1>Package „Premium" Full Description</h1>
@@ -190,16 +238,36 @@
         <p>- Adult Channels – 5</p>
         <p>- VoD – 5</p>
         <p>One month is 30 days in all packages and with different durations.</p>
-        <button class="back_to_catalog">Back to Catalog</button>
-        <button class="buy_button">Buy</button>
+        <div class="radio-group">
+            <label><input type="radio" name="subscription3" value="1 month"> 1 month</label>
+            <label><input type="radio" name="subscription3" value="3 months"> 3 months</label>
+            <label><input type="radio" name="subscription3" value="6 months"> 6 months</label>
+            <label><input type="radio" name="subscription3" value="12 months"> 12 months</label>
+        </div>
+        <button class="more_button back_to_catalog">Back</button>
+        <button class="cart_button add_to_cart" data-product="Product 3" data-period="subscription3" disabled>Cart</button>
     </div>
     <div id="product4_detail" class="product-detail" style="display: none;">
         <h1>Product 4 Full Description</h1>
         <img src="box.png" alt="Product 4">
         <p>Full details about Product 4.</p>
-        <button class="back_to_catalog">Back to Catalog</button>
-        <button class="buy_button">Buy</button>
+        <div class="radio-group">
+            <label><input type="radio" name="subscription4" value="1 month"> 1 month</label>
+            <label><input type="radio" name="subscription4" value="3 months"> 3 months</label>
+            <label><input type="radio" name="subscription4" value="6 months"> 6 months</label>
+            <label><input type="radio" name="subscription4" value="12 months"> 12 months</label>
+        </div>
+        <button class="more_button back_to_catalog">Back</button>
+        <button class="cart_button add_to_cart" data-product="Product 4" data-period="subscription4" disabled>Cart</button>
     </div>
+    <div id="cart">
+        <h1>Shopping Cart</h1>
+        <ul id="cart_items"></ul>
+        <button id="checkout_button" disabled>Checkout</button>
+        <button id="clear_cart_button">Clear Cart</button>
+        <button id="back_to_catalog_from_cart">Back to Catalog</button>
+    </div>
+    <button id="cart_button_global" class="cart-button-global" style="display: none;">Cart</button>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
@@ -209,6 +277,44 @@
         let catalog = document.getElementById("catalog");
         let moreButtons = document.querySelectorAll(".more_button");
         let backToCatalogButtons = document.querySelectorAll(".back_to_catalog");
+        let cartButtonGlobal = document.getElementById("cart_button_global");
+        let cart = document.getElementById("cart");
+        let cartItemsList = document.getElementById("cart_items");
+        let checkoutButton = document.getElementById("checkout_button");
+        let clearCartButton = document.getElementById("clear_cart_button");
+        let backToCatalogFromCart = document.getElementById("back_to_catalog_from_cart");
+
+        let cartItems = [];
+
+        function updateCartButtonGlobal() {
+            if (cartItems.length > 0) {
+                cartButtonGlobal.style.display = 'block';
+            } else {
+                cartButtonGlobal.style.display = 'none';
+            }
+        }
+
+        function updateCheckoutButton() {
+            checkoutButton.disabled = cartItems.length === 0;
+        }
+
+        function renderCartItems() {
+            cartItemsList.innerHTML = '';
+            cartItems.forEach((item, index) => {
+                let li = document.createElement('li');
+                li.textContent = `${item.product} - ${item.period}`;
+                let removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.addEventListener('click', () => {
+                    cartItems.splice(index, 1);
+                    renderCartItems();
+                    updateCartButtonGlobal();
+                    updateCheckoutButton();
+                });
+                li.appendChild(removeButton);
+                cartItemsList.appendChild(li);
+            });
+        }
 
         catalogButton.addEventListener("click", () => {
             main.style.display = "none";
@@ -218,6 +324,13 @@
         backButton.addEventListener("click", () => {
             catalog.style.display = "none";
             main.style.display = "block";
+        });
+
+        cartButtonGlobal.addEventListener("click", () => {
+            catalog.style.display = "none";
+            main.style.display = "none";
+            cart.style.display = "block";
+            renderCartItems();
         });
 
         moreButtons.forEach(button => {
@@ -234,6 +347,42 @@
                 });
                 catalog.style.display = "block";
             });
+        });
+
+        backToCatalogFromCart.addEventListener("click", () => {
+            cart.style.display = "none";
+            catalog.style.display = "block";
+        });
+
+        clearCartButton.addEventListener("click", () => {
+            cartItems = [];
+            renderCartItems();
+            updateCartButtonGlobal();
+            updateCheckoutButton();
+        });
+
+        document.querySelectorAll(".product-detail input[type='radio']").forEach(radio => {
+            radio.addEventListener("change", (e) => {
+                let productDetail = e.target.closest('.product-detail');
+                let addToCartButton = productDetail.querySelector('.add_to_cart');
+                addToCartButton.disabled = false;
+            });
+        });
+
+        document.querySelectorAll(".add_to_cart").forEach(button => {
+            button.addEventListener("click", () => {
+                let product = button.dataset.product;
+                let period = document.querySelector(`input[name='${button.dataset.period}']:checked`).value;
+                cartItems.push({ product, period });
+                updateCartButtonGlobal();
+                updateCheckoutButton();
+                alert(`${product} (${period}) has been added to the cart.`);
+            });
+        });
+
+        checkoutButton.addEventListener("click", () => {
+            alert("Proceeding to checkout...");
+            // Add your checkout logic here
         });
     </script>
 </body>
