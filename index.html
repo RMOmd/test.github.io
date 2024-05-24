@@ -15,6 +15,7 @@
         }
         #main, #catalog {
             padding: 20px;
+            text-align: center; /* Center content horizontally */
         }
         h1 {
             color: #444;
@@ -55,12 +56,17 @@
         button:hover {
             background-color: #0056b3;
         }
+        .centered-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
     <div id="main">
         <h1>OnlineShop</h1>
-        <img src="shop.png" alt="Shop Image">
+        <img src="shop.png" alt="Shop Image" class="centered-image">
         <p>Description of the shop</p>
         <button id="catalog_button">Catalog</button>
     </div>
