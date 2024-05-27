@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
     <style>
@@ -21,21 +21,23 @@
             color: #444;
         }
         .product-grid {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            justify-content: center;
+            justify-items: center;
         }
         .product, .product-detail {
-            width: calc(50% - 20px);
+            width: 100%;
             box-sizing: border-box;
             text-align: center;
             background-color: #fff;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            margin: auto;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .product img, .product-detail img {
             max-width: 100%;
@@ -104,7 +106,7 @@
         </div>
         <button id="catalog_button">Catalog</button>
     </div>
-        <div id="catalog" style="display: none;">
+    <div id="catalog" style="display: none;">
         <h1>Online catalog</h1>
         <div class="product-grid">
             <div class="product">
@@ -144,7 +146,7 @@
         </div>
         <button id="back_button">Back</button>
     </div>
-     <div id="product1_detail" class="product-detail" style="display: none;">
+    <div id="product1_detail" class="product-detail" style="display: none;">
         <h1>Package „Basic" Full Description</h1>
         <img src="bas.png" alt="Product 1">
         <p>The package „Basic" gives you the ability to watch a package of PolBox.TV channels on a TV, computer, smartphone or tablet.</p>
