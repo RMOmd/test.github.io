@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
-       <style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
         }
-        #main, #catalog, .product-detail, #cart {
+        #main, #catalog, .product-detail {
             padding: 20px;
             text-align: center;
         }
@@ -27,19 +27,15 @@
             justify-content: center;
         }
         .product, .product-detail {
-            width: 100%; /* Default width for smaller screens */
-            max-width: 300px; /* Maximum width */
-            flex: 1 1 45%; /* Flex properties for responsiveness */
+            width: calc(50% - 20px);
             box-sizing: border-box;
             text-align: center;
             background-color: #fff;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            margin: 10px;
-            overflow: hidden; /* Ensure content doesn't overflow */
-            display: flex;
-            flex-direction: column;
+            margin: auto;
+            position: relative;
         }
         .product img, .product-detail img {
             max-width: 100%;
@@ -51,32 +47,33 @@
             color: #666;
             margin: 5px 0;
         }
+        .product button {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
         button {
+            background-color: #007bff;
+            color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            margin-top: auto;
-            width: 100px; /* Fixed width for consistency */
-            transition: all 0.3s ease;
+            margin-top: 10px;
         }
-        .more_button {
-            background-color: #d3d3d3;
-            color: #000;
-            margin-bottom: 10px;
+        button:hover {
+            background-color: #0056b3;
         }
-        .more_button:hover {
-            background-color: #000;
-            color: #d3d3d3;
-        }
-        .cart_button {
-            background-color: #ff0000;
-            color: #fff;
-        }
-        .cart_button:hover {
-            background-color: #fff;
-            color: #ff0000;
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: calc(100% - 40px);
+            box-sizing: border-box;
         }
         .centered-image {
             display: block;
@@ -87,51 +84,8 @@
             text-align: left;
             margin-top: 20px;
         }
-        .radio-group {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .cart-button-global {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #ff0000;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .cart-button-global:hover {
-            background-color: #fff;
-            color: #ff0000;
-        }
-        #cart_items {
-            list-style-type: none;
-            padding: 0;
-        }
-        #cart_items li {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #cart_items li button {
-            background-color: #ff0000;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #cart_items li button:hover {
-            background-color: #fff;
-            color: #ff0000;
-        }
-        #cart {
-            display: none;
+        .back_to_catalog {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -200,10 +154,10 @@
         <p>One month is 30 days in all packages and with different durations.</p>
         <select id="product_select">
             <option value="" disabled selected>Select a product for more details</option>
-            <option value="product1_detail">Product 1</option>
-            <option value="product2_detail">Product 2</option>
-            <option value="product3_detail">Product 3</option>
-            <option value="product4_detail">Product 4</option>
+            <option value="product1_detail">1 month</option>
+            <option value="product2_detail">3 month</option>
+            <option value="product3_detail">6 month</option>
+            <option value="product4_detail">12 month</option>
         </select>
         <button class="more_button back_to_catalog">Back</button>
         <button class="cart_button add_to_cart" data-product="Product 1" data-period="subscription1" disabled>Cart</button>
@@ -222,10 +176,10 @@
         <p>One month is 30 days in all packages and with different durations.</p>
         <select id="product_select">
             <option value="" disabled selected>Select a product for more details</option>
-            <option value="product1_detail">Product 1</option>
-            <option value="product2_detail">Product 2</option>
-            <option value="product3_detail">Product 3</option>
-            <option value="product4_detail">Product 4</option>
+            <option value="product1_detail">1 month</option>
+            <option value="product2_detail">3 month</option>
+            <option value="product3_detail">6 month</option>
+            <option value="product4_detail">12 month</option>
         </select>
         <button class="more_button back_to_catalog">Back</button>
         <button class="cart_button add_to_cart" data-product="Product 2" data-period="subscription2" disabled>Cart</button>
@@ -245,10 +199,10 @@
         <p>One month is 30 days in all packages and with different durations.</p>
         <select id="product_select">
             <option value="" disabled selected>Select a product for more details</option>
-            <option value="product1_detail">Product 1</option>
-            <option value="product2_detail">Product 2</option>
-            <option value="product3_detail">Product 3</option>
-            <option value="product4_detail">Product 4</option>
+            <option value="product1_detail">1 month</option>
+            <option value="product2_detail">3 month</option>
+            <option value="product3_detail">6 month</option>
+            <option value="product4_detail">12 month</option>
         </select>
         <button class="more_button back_to_catalog">Back</button>
         <button class="cart_button add_to_cart" data-product="Product 3" data-period="subscription3" disabled>Cart</button>
