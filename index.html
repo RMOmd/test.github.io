@@ -198,12 +198,13 @@
         <p>-Video library</p>
         <p>-Archives</p>
         <p>One month is 30 days in all packages and with different durations.</p>
-        <div class="radio-group">
-            <label><input type="radio" name="subscription1" value="1 month"> 1 month</label>
-            <label><input type="radio" name="subscription1" value="3 months"> 3 months</label>
-            <label><input type="radio" name="subscription1" value="6 months"> 6 months</label>
-            <label><input type="radio" name="subscription1" value="12 months"> 12 months</label>
-        </div>
+        <select id="product_select">
+            <option value="" disabled selected>Select a product for more details</option>
+            <option value="product1_detail">Product 1</option>
+            <option value="product2_detail">Product 2</option>
+            <option value="product3_detail">Product 3</option>
+            <option value="product4_detail">Product 4</option>
+        </select>
         <button class="more_button back_to_catalog">Back</button>
         <button class="cart_button add_to_cart" data-product="Product 1" data-period="subscription1" disabled>Cart</button>
     </div>
@@ -219,12 +220,13 @@
         <p>- Adult Channel – 1</p>
         <p>- VoD – 1</p>
         <p>One month is 30 days in all packages and with different durations.</p>
-        <div class="radio-group">
-            <label><input type="radio" name="subscription2" value="1 month"> 1 month</label>
-            <label><input type="radio" name="subscription2" value="3 months"> 3 months</label>
-            <label><input type="radio" name="subscription2" value="6 months"> 6 months</label>
-            <label><input type="radio" name="subscription2" value="12 months"> 12 months</label>
-        </div>
+        <select id="product_select">
+            <option value="" disabled selected>Select a product for more details</option>
+            <option value="product1_detail">Product 1</option>
+            <option value="product2_detail">Product 2</option>
+            <option value="product3_detail">Product 3</option>
+            <option value="product4_detail">Product 4</option>
+        </select>
         <button class="more_button back_to_catalog">Back</button>
         <button class="cart_button add_to_cart" data-product="Product 2" data-period="subscription2" disabled>Cart</button>
     </div>
@@ -241,12 +243,13 @@
         <p>- Adult Channels – 5</p>
         <p>- VoD – 5</p>
         <p>One month is 30 days in all packages and with different durations.</p>
-        <div class="radio-group">
-            <label><input type="radio" name="subscription3" value="1 month"> 1 month</label>
-            <label><input type="radio" name="subscription3" value="3 months"> 3 months</label>
-            <label><input type="radio" name="subscription3" value="6 months"> 6 months</label>
-            <label><input type="radio" name="subscription3" value="12 months"> 12 months</label>
-        </div>
+        <select id="product_select">
+            <option value="" disabled selected>Select a product for more details</option>
+            <option value="product1_detail">Product 1</option>
+            <option value="product2_detail">Product 2</option>
+            <option value="product3_detail">Product 3</option>
+            <option value="product4_detail">Product 4</option>
+        </select>
         <button class="more_button back_to_catalog">Back</button>
         <button class="cart_button add_to_cart" data-product="Product 3" data-period="subscription3" disabled>Cart</button>
     </div>
@@ -282,6 +285,7 @@
         let checkoutButton = document.getElementById("checkout_button");
         let clearCartButton = document.getElementById("clear_cart_button");
         let backToCatalogFromCart = document.getElementById("back_to_catalog_from_cart");
+        let productSelect = document.getElementById("product_select");
 
         let cartItems = [];
 
@@ -339,6 +343,13 @@
             });
         });
 
+        productSelect.addEventListener("change", (event) => {
+            let selectedProduct = event.target.value;
+            catalog.style.display = "none";
+            document.getElementById(selectedProduct).style.display = "block";
+        });
+
+        
         backToCatalogButtons.forEach(button => {
             button.addEventListener("click", () => {
                 document.querySelectorAll(".product-detail").forEach(detail => {
