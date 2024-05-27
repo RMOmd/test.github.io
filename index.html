@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
     <style>
@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
         }
-        #main, #catalog, .product-detail {
+        #main, #catalog, .product-detail, #cart {
             padding: 20px;
             text-align: center;
         }
@@ -48,10 +48,7 @@
             margin: 5px 0;
         }
         .product button {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-top: 10px;
         }
         button {
             background-color: #007bff;
@@ -84,8 +81,16 @@
             text-align: left;
             margin-top: 20px;
         }
+        .back_to_catalog, .add_to_cart {
+            position: fixed;
+            bottom: 10px;
+            width: calc(50% - 40px);
+        }
         .back_to_catalog {
-            margin-top: 20px;
+            left: 20px;
+        }
+        .add_to_cart {
+            right: 20px;
         }
     </style>
 </head>
@@ -99,7 +104,7 @@
         </div>
         <button id="catalog_button">Catalog</button>
     </div>
-    <div id="catalog" style="display: none;">
+        <div id="catalog" style="display: none;">
         <h1>Online catalog</h1>
         <div class="product-grid">
             <div class="product">
@@ -108,7 +113,6 @@
                 <p>- Video library;</p>
                 <p>- Archive.</p>
                 <button class="more_button" data-product="product1_detail">More</button>
-                <button class="cart_button">Cart</button>
             </div>
             <div class="product">
                 <img src="fam.png" alt="Product 2">
@@ -119,7 +123,6 @@
                 <p>- Adult Channel – 1;</p>
                 <p>- VoD – 1.</p>
                 <button class="more_button" data-product="product2_detail">More</button>
-                <button class="cart_button">Cart</button>
             </div>
             <div class="product">
                 <img src="prem.png" alt="Product 3">
@@ -131,42 +134,40 @@
                 <p>- Adult Channels – 5;</p>
                 <p>- VoD – 5.</p>
                 <button class="more_button" data-product="product3_detail">More</button>
-                <button class="cart_button">Cart</button>
             </div>
             <div class="product">
                 <img src="box.png" alt="Product 4">
                 <p>The stylish and functional TVBox Smart media player with ergonomic design offers convenience and ease of use.</p>
                 <p>*The maximum distance for the decoder to work of Wi-Fi is 3 meters from the router, and devices should be on the same level. In other conditions, please connect the cable.</p>
                 <button class="more_button" data-product="product4_detail">More</button>
-                <button class="cart_button">Cart</button>
             </div>
         </div>
         <button id="back_button">Back</button>
     </div>
-    <div id="product1_detail" class="product-detail" style="display: none;">
+     <div id="product1_detail" class="product-detail" style="display: none;">
         <h1>Package „Basic" Full Description</h1>
         <img src="bas.png" alt="Product 1">
-        <p>The package „Basic' gives you the ability to watch a package of PolBox.TV channels on a TV, computer, smartphone or tablet.</p>
-        <p>The package „Basic' allows you to watch:</p>
-        <p>-More than 50 Polish channels</p>
-        <p>-Video library</p>
-        <p>-Archives</p>
+        <p>The package „Basic" gives you the ability to watch a package of PolBox.TV channels on a TV, computer, smartphone or tablet.</p>
+        <p>The package „Basic" allows you to watch:</p>
+        <p>- More than 50 Polish channels</p>
+        <p>- Video library</p>
+        <p>- Archives</p>
         <p>One month is 30 days in all packages and with different durations.</p>
-        <select id="product_select">
+        <select id="product1_select">
             <option value="" disabled selected>Select a product for more details</option>
-            <option value="product1_detail">1 month</option>
-            <option value="product2_detail">3 month</option>
-            <option value="product3_detail">6 month</option>
-            <option value="product4_detail">12 month</option>
+            <option value="1 month">1 month</option>
+            <option value="3 months">3 months</option>
+            <option value="6 months">6 months</option>
+            <option value="12 months">12 months</option>
         </select>
-        <button class="more_button back_to_catalog">Back</button>
-        <button class="cart_button add_to_cart" data-product="Product 1" data-period="subscription1" disabled>Cart</button>
+        <button class="back_to_catalog">Back</button>
+        <button class="add_to_cart" data-product="Product 1" disabled>Add to Cart</button>
     </div>
     <div id="product2_detail" class="product-detail" style="display: none;">
         <h1>Package „Family" Full Description</h1>
         <img src="fam.png" alt="Product 2">
-        <p>The package „Family' gives you the ability to watch a package of PolBox.TV channels on a TV, computer, smartphone or tablet.</p>
-        <p>The package „Family' allows you to watch:</p>
+        <p>The package „Family" gives you the ability to watch a package of PolBox.TV channels on a TV, computer, smartphone or tablet.</p>
+        <p>The package „Family" allows you to watch:</p>
         <p>- More than 80 Polish channels</p>
         <p>- Video library</p>
         <p>- Multiroom</p>
@@ -174,21 +175,21 @@
         <p>- Adult Channel – 1</p>
         <p>- VoD – 1</p>
         <p>One month is 30 days in all packages and with different durations.</p>
-        <select id="product_select">
+        <select id="product2_select">
             <option value="" disabled selected>Select a product for more details</option>
-            <option value="product1_detail">1 month</option>
-            <option value="product2_detail">3 month</option>
-            <option value="product3_detail">6 month</option>
-            <option value="product4_detail">12 month</option>
+            <option value="1 month">1 month</option>
+            <option value="3 months">3 months</option>
+            <option value="6 months">6 months</option>
+            <option value="12 months">12 months</option>
         </select>
-        <button class="more_button back_to_catalog">Back</button>
-        <button class="cart_button add_to_cart" data-product="Product 2" data-period="subscription2" disabled>Cart</button>
+        <button class="back_to_catalog">Back</button>
+        <button class="add_to_cart" data-product="Product 2" disabled>Add to Cart</button>
     </div>
     <div id="product3_detail" class="product-detail" style="display: none;">
         <h1>Package „Premium" Full Description</h1>
         <img src="prem.png" alt="Product 3">
-        <p>The „Premium' package gives you the ability to watch PolBox.TV channels on a TV, computer, smartphone or tablet.</p>
-        <p>The „Premium' package allows you to watch:</p>
+        <p>The „Premium" package gives you the ability to watch PolBox.TV channels on a TV, computer, smartphone or tablet.</p>
+        <p>The „Premium" package allows you to watch:</p>
         <p>- More than 120 Polish channels</p>
         <p>- Video library</p>
         <p>- Multiroom</p>
@@ -197,15 +198,15 @@
         <p>- Adult Channels – 5</p>
         <p>- VoD – 5</p>
         <p>One month is 30 days in all packages and with different durations.</p>
-        <select id="product_select">
+        <select id="product3_select">
             <option value="" disabled selected>Select a product for more details</option>
-            <option value="product1_detail">1 month</option>
-            <option value="product2_detail">3 month</option>
-            <option value="product3_detail">6 month</option>
-            <option value="product4_detail">12 month</option>
+            <option value="1 month">1 month</option>
+            <option value="3 months">3 months</option>
+            <option value="6 months">6 months</option>
+            <option value="12 months">12 months</option>
         </select>
-        <button class="more_button back_to_catalog">Back</button>
-        <button class="cart_button add_to_cart" data-product="Product 3" data-period="subscription3" disabled>Cart</button>
+        <button class="back_to_catalog">Back</button>
+        <button class="add_to_cart" data-product="Product 3" disabled>Add to Cart</button>
     </div>
     <div id="product4_detail" class="product-detail" style="display: none;">
         <h1>Product 4 Full Description</h1>
@@ -213,10 +214,10 @@
         <p>The stylish and functional TVBox Smart media player with ergonomic design offers convenience and ease of use.</p>
         <p>TVBox Smart is a miniature player designed for users looking for easy-to-use, versatile and efficient solutions.</p>
         <p>*The maximum distance for the decoder to work of Wi-Fi is 3 meters from the router, and devices should be on the same level. In other conditions, please connect the cable.</p>
-        <button class="more_button back_to_catalog">Back</button>
-        <button class="cart_button add_to_cart" data-product="Product 4" data-period="subscription4" disabled>Cart</button>
+        <button class="back_to_catalog">Back</button>
+        <button class="add_to_cart" data-product="Product 4" disabled>Add to Cart</button>
     </div>
-    <div id="cart">
+    <div id="cart" style="display: none;">
         <h1>Shopping Cart</h1>
         <ul id="cart_items"></ul>
         <button id="checkout_button" disabled>Checkout</button>
@@ -239,7 +240,6 @@
         let checkoutButton = document.getElementById("checkout_button");
         let clearCartButton = document.getElementById("clear_cart_button");
         let backToCatalogFromCart = document.getElementById("back_to_catalog_from_cart");
-        let productSelect = document.getElementById("product_select");
 
         let cartItems = [];
 
@@ -297,13 +297,6 @@
             });
         });
 
-        productSelect.addEventListener("change", (event) => {
-            let selectedProduct = event.target.value;
-            catalog.style.display = "none";
-            document.getElementById(selectedProduct).style.display = "block";
-        });
-
-        
         backToCatalogButtons.forEach(button => {
             button.addEventListener("click", () => {
                 document.querySelectorAll(".product-detail").forEach(detail => {
@@ -325,8 +318,8 @@
             updateCheckoutButton();
         });
 
-        document.querySelectorAll(".product-detail input[type='radio']").forEach(radio => {
-            radio.addEventListener("change", (e) => {
+        document.querySelectorAll("select").forEach(select => {
+            select.addEventListener("change", (e) => {
                 let productDetail = e.target.closest('.product-detail');
                 let addToCartButton = productDetail.querySelector('.add_to_cart');
                 addToCartButton.disabled = false;
@@ -336,7 +329,8 @@
         document.querySelectorAll(".add_to_cart").forEach(button => {
             button.addEventListener("click", () => {
                 let product = button.dataset.product;
-                let period = document.querySelector(`input[name='${button.dataset.period}']:checked`).value;
+                let selectElement = button.closest('.product-detail').querySelector('select');
+                let period = selectElement.options[selectElement.selectedIndex].text;
                 cartItems.push({ product, period });
                 updateCartButtonGlobal();
                 updateCheckoutButton();
